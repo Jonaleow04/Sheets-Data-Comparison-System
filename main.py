@@ -1,7 +1,7 @@
 import gspread
 import pandas as pd
+import numpy as np
 from oauth2client.service_account import ServiceAccountCredentials
-
 
 while True:
     #input sheet to be validated
@@ -18,7 +18,7 @@ while True:
     main_data, response_data = main_sheets.get_all_values(), response_sheets.get_all_values()
 
     #Arrange and clean data
-    main_df, response_df = pd.DataFrame(main_data).drop([0, 1]).reset_index(drop=True), pd.DataFrame(response_data).drop(0).reset_index(drop=True)
+    main_df, response_df = pd.DataFrame(main_data).drop([0, 1]).replace(r'^\s*$', np.nan, regex=True).dropna().reset_index(drop=True), pd.DataFrame(response_data).drop(0).reset_index(drop=True)
     main_df.columns, response_df.columns = ['No', 'Name', 'Image Number'], ['Timestamp', 'Agreement', 'Name', 'Gender', 'Position', 'Image Number', 'Phone Number', 'Home Number', 'Email', 'Adress']
     main_image_number, response_image_number = main_df['Image Number'], response_df['Image Number']
 
@@ -27,7 +27,7 @@ while True:
     for index, count in enumerate(validation):
         print(index+1, count)
 
-    #to continue or no
+    #continue loop
     continue_break = str(input('Continue? (y/n): '))
 
     if (continue_break == 'y'):
