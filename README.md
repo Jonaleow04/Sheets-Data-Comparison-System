@@ -19,6 +19,7 @@
 python -m pip install gspread
 python -m pip install pandas
 python -m pip install numpy
+python -m pip install oauth2client
 ```
 - Create a new project in [Google Cloud Console](https://console.cloud.google.com) 
 - [Here's a guide if you're new to Google Cloud](https://developers.google.com/workspace/guides/create-project)
