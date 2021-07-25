@@ -29,7 +29,7 @@ python -m pip install PyOpenSSL
 - Inside the JSON file, search for your client email and copy it
 - Share the google sheets you are fetching to your client email
   ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0b268526-3cec-494b-a45e-e430b91bc343/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210725%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210725T131939Z&X-Amz-Expires=86400&X-Amz-Signature=065dad52d20d9fe9a4f44aa68f7d66d4a3b15d8cd3ae3d665268ac72f3148df7&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D"Untitled.png")
- > You may check out this article if you are new in working with Google Cloud Console and its APIs [](https://medium.com/@vince.shields913/reading-google-sheets-into-a-pandas-dataframe-with-gspread-and-oauth2-375b932be7bf)
+- [You may check out this article if you are new in working with Google Cloud Console and its APIs](https://medium.com/@vince.shields913/reading-google-sheets-into-a-pandas-dataframe-with-gspread-and-oauth2-375b932be7bf)
 
 ## Usage
 - Clone the repository
@@ -64,3 +64,4 @@ python main.py
 - https://developers.google.com/sheets/api/quickstart/python
 - https://docs.gspread.org/en/latest/
 - https://pandas.pydata.org/docs/
+- https://medium.com/@vince.shields913/reading-google-sheets-into-a-pandas-dataframe-with-gspread-and-oauth2-375b932be7bf
