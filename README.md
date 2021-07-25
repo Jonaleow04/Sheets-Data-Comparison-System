@@ -1,6 +1,6 @@
 # Sheets Data Comparison System
 ## The Whats
-- This is a Python program that fetches two Google Sheets and loads it into Python to do data validation. 
+- This is a Python program that fetches two Google Sheets and loads it into Python to compare and validate. 
   - The Google Sheets is fetched using Google Sheet API and gspread module
   - Pandas DataFrame is used to load the Google Sheets into Python
   - Numpy is used to manipulate the arrays
