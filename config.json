@@ -1,0 +1,4 @@
+{
+    "feeds": "https://spreadsheets.google.com/feeds",
+    "auth": "https://www.googleapis.com/auth/drive"
+}
