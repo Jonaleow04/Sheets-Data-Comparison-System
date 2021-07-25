@@ -1,7 +1,10 @@
-import gspread
-import pandas as pd
-import numpy as np
+import gspread, json, pandas as pd, numpy as np
 from oauth2client.service_account import ServiceAccountCredentials
+
+with open('config.json', 'r') as file:
+    credentials = json.load(file)
+    feeds = credentials['feeds']
+    auth = credentials['auth']
 
 while True:
     #input sheet to be validated
@@ -9,8 +12,8 @@ while True:
     response_sheets_input = main_sheets_input +' (Responses)'
 
     #setting up scope and authorise credential
-    scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('sheet-data-fetcher-fd1fc06d614f.json', scope)
+    scope = [feeds, auth]
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
     gc = gspread.authorize(credentials)
 
     #fetching main google sheet
