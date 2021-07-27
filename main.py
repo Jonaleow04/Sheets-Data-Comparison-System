@@ -6,7 +6,7 @@ with open('config.json', 'r') as file:
     feeds = credentials['feeds']
     auth = credentials['auth']
 
-def main():
+while True:
     #input sheet to be validated
     main_sheets_input = str(input('Enter main sheet name (5XX): '))
     response_sheets_input = main_sheets_input +' (Responses)'
@@ -29,9 +29,7 @@ def main():
     validation = main_image_number == response_image_number
     for index, count in enumerate(validation):
         print(index+1, count)
-
-while True:
-    main()
+        
     #continue loop
     continue_break = str(input('Continue? (y/n): '))
 
