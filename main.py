@@ -1,4 +1,7 @@
-import gspread, json, pandas as pd, numpy as np
+import gspread
+import json
+import pandas as pd
+import numpy as np
 from oauth2client.service_account import ServiceAccountCredentials
 
 with open('config.json', 'r') as file:
@@ -40,4 +43,3 @@ while True:
     else:
         print('Invalid Input')
         break
-        
