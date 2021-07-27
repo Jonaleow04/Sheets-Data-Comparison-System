@@ -32,29 +32,29 @@ python -m pip install PyOpenSSL
 
 ## Usage
 - Clone the repository
-- Line 11 is to let the user input the name of the google sheets
-- At line 12, since the other google sheet I'm comparing with is of the same name as the main google sheet but with '(Responses)' at the end, so I concatenate the string to the google sheets name that the user input at line 11
+- Line 14 is to let the user input the name of the google sheets
+- At line 15, since the other google sheet I'm comparing with is of the same name as the main google sheet but with '(Responses)' at the end, so I concatenate the string to the google sheets name that the user input at line 11
 ``` python
 main_sheets_input = str(input('Enter main sheet name (5XX): '))
 response_sheets_input = main_sheets_input +' (Responses)'
 ```
-- At line 16, replace the credential json file name with your own
+- At line 19, replace the credential json file name with your own
 ``` python
 credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
 ```
-- From line 24 to line 26 is where it loads the google sheets into a pandas DataFrame, arrange the datas and get the datas that needs to be validated. You will need to change it according to your own needs
+- From line 27 to line 29 is where it loads the google sheets into a pandas DataFrame, arrange the datas and get the datas that needs to be validated. You will need to change it according to your own needs
 ``` python
 main_df, response_df = pd.DataFrame(main_data).drop([0, 1]).replace(r'^\s*$', np.nan, regex=True).dropna().reset_index(drop=True), pd.DataFrame(response_data).drop(0).reset_index(drop=True)
 main_df.columns, response_df.columns = ['No', 'Name', 'Image Number'], ['Timestamp', 'Agreement', 'Name', 'Gender', 'Position', 'Image Number', 'Phone Number', 'Home Number', 'Email', 'Adress']
 main_image_number, response_image_number = main_df['Image Number'], response_df['Image Number']
 ```
-- From line 29 to 31 is the validation part. It will return a boolean value on whether if the data is correct
+- From line 32 to 34 is the validation part. It will return a boolean value on whether if the data is correct
 ``` python
 validation = main_image_number == response_image_number
     for index, count in enumerate(validation):
         print(index+1, count)
 ```
-- Run the program in an IDE or in command propmt by typing:
+- Run the program in an IDE or in command propmt by directing to the repo path and type:
 ``` 
 python main.py
 ```
