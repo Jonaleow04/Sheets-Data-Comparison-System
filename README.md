@@ -35,17 +35,17 @@ python -m pip install PyOpenSSL
 main_sheets_input = str(input('Enter main sheet name (5XX): '))
 response_sheets_input = main_sheets_input +' (Responses)'
 ```
-- At line 19, replace the credential json file name with your own
+- At line 12, replace the credential json file name with your own
 ``` python
 credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
 ```
-- From line 27 to line 29 is where it loads the google sheets into a pandas DataFrame, arrange the datas and get the datas that needs to be validated. You will need to change it according to your own needs
+- From line 32 to line 34 is where it loads the google sheets into a pandas DataFrame, arrange the datas and get the datas that needs to be validated. You will need to change it according to your own needs
 ``` python
 main_df, response_df = pd.DataFrame(main_data).drop([0, 1]).replace(r'^\s*$', np.nan, regex=True).dropna().reset_index(drop=True), pd.DataFrame(response_data).drop(0).reset_index(drop=True)
 main_df.columns, response_df.columns = ['No', 'Name', 'Image Number'], ['Timestamp', 'Agreement', 'Name', 'Gender', 'Position', 'Image Number', 'Phone Number', 'Home Number', 'Email', 'Adress']
 main_image_number, response_image_number = main_df['Image Number'], response_df['Image Number']
 ```
-- From line 32 to 34 is the validation part. It will return a boolean value on whether if the data is correct
+- From line 42 to 44 is the validation part. It will return a boolean value on whether if the data is correct
 ``` python
 validation = main_image_number == response_image_number
     for index, count in enumerate(validation):
