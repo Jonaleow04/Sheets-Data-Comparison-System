@@ -14,24 +14,36 @@ while True:
     main_sheets_input = str(input('Enter main sheet name (5XX): '))
     response_sheets_input = main_sheets_input +' (Responses)'
 
-    #setting up scope and authorise credential
-    scope = [feeds, auth]
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
-    gc = gspread.authorize(credentials)
+    try:
+        #setting up scope and authorise credential
+        scope = [feeds, auth]
+        credentials = ServiceAccountCredentials.from_json_keyfile_name('credential.json', scope)
+        gc = gspread.authorize(credentials)
+    except:
+        print('Setup error, please check credential or sheets availability and try again')
+        break
+    
+    try:
+        #fetching main google sheet
+        main_sheets, response_sheets = gc.open(main_sheets_input).sheet1, gc.open(response_sheets_input).sheet1
+        main_data, response_data = main_sheets.get_all_values(), response_sheets.get_all_values()
 
-    #fetching main google sheet
-    main_sheets, response_sheets = gc.open(main_sheets_input).sheet1, gc.open(response_sheets_input).sheet1
-    main_data, response_data = main_sheets.get_all_values(), response_sheets.get_all_values()
+        #Arrange and clean data
+        main_df, response_df = pd.DataFrame(main_data).drop([0, 1]).replace(r'^\s*$', np.nan, regex=True).dropna().reset_index(drop=True), pd.DataFrame(response_data).drop(0).reset_index(drop=True)
+        main_df.columns, response_df.columns = ['No', 'Name', 'Image Number'], ['Timestamp', 'Agreement', 'Name', 'Gender', 'Position', 'Image Number', 'Phone Number', 'Home Number', 'Email', 'Adress']
+        main_image_number, response_image_number = main_df['Image Number'], response_df['Image Number']
+    
+    except:
+        print('Cleaning & arrangement error, please check the sheets data and try again')
+        break
 
-    #Arrange and clean data
-    main_df, response_df = pd.DataFrame(main_data).drop([0, 1]).replace(r'^\s*$', np.nan, regex=True).dropna().reset_index(drop=True), pd.DataFrame(response_data).drop(0).reset_index(drop=True)
-    main_df.columns, response_df.columns = ['No', 'Name', 'Image Number'], ['Timestamp', 'Agreement', 'Name', 'Gender', 'Position', 'Image Number', 'Phone Number', 'Home Number', 'Email', 'Adress']
-    main_image_number, response_image_number = main_df['Image Number'], response_df['Image Number']
-
-    #validating data
-    validation = main_image_number == response_image_number
-    for index, count in enumerate(validation):
-        print(index+1, count)
+    try: 
+        #validating data
+        validation = main_image_number == response_image_number
+        for index, count in enumerate(validation):
+            print(index+1, count)
+    except:
+        print('Could not undergo validation process, please check if data type is correct')
         
     #continue loop
     continue_break = str(input('Continue? (y/n): '))
