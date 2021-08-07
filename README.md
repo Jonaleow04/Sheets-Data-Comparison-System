@@ -9,9 +9,6 @@
 - I have two separate sets of Google Sheets (one is the main spreadsheet and another is from google forms response) I need to compare the datas of to make sure it is correct.
 - Something clicked in me and I told myself 'Surely I can write a program to automate this right?'
 
-## The Hows
-![flowchart](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4cc354ad-13a1-4beb-a7fe-b8e64f053c1b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210725%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210725T131942Z&X-Amz-Expires=86400&X-Amz-Signature=7526798124587ff0891caa309bcada5fc893e09eb1fc917844d0f5504caeaa16&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D"Untitled.png")
-- Here's a simple flowchart that I created for the sake of helping me structure my program and understand it better
 ## Setup
 - Install Python 3.8 or above
 - Install the following Python modules: gspread, pandas, numpy
